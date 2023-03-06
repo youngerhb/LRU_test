@@ -19,6 +19,8 @@ public:
     void add_node(int k, int v)
     {
         head = new ListNode(k, v, nullptr, head);
+        if(head->next!=nullptr)
+        head->next->pre = head;
     }
     
     int check_value(int k)
@@ -27,23 +29,31 @@ public:
         while (node != nullptr)
         {
             /* code */
-            if (node->value == k)
+            if (node->key == k)
             {
-                std::cout << "the value of " << k << "is" << node->value << std::endl;
+                std::cout << "the value of " << k << " is " << node->value << std::endl;
 
                 if(node->pre!=nullptr){
+                    std::cout<<" pre pre is" <<node->pre->pre->value<<std::endl;          
                     node->pre->next = node->next; 
                     
-                    if(node->next!=nullptr){
+                    if(node->next!=nullptr)
                     node->next->pre = node->pre;
 
                     node->next=node->pre;
 
                     if(node->pre->pre!=nullptr){
                         node->pre->pre->next = node;
+                        node->pre = node->pre->pre;
+                        node->pre->pre;   
+                        std::cout<<" pre pre is" <<node->pre->pre->value<<std::endl;               
                     }
-                    node->pre = node->pre->pre;                  
-                }
+                    else{
+                        head = node;
+                        node->pre =nullptr;
+                        std::cout<<" head is" <<node->pre->pre->value<<std::endl;   
+                    }          
+                
                 }
                 
                 return node->value;
@@ -63,9 +73,12 @@ public:
             /* code */
             if (node->key == k)
             {
-                std::cout << "the value of " << k << "is" << node->value << std::endl;
+                std::cout << "the value of " << k << " is " << node->value << std::endl;
                 if(node->pre!=nullptr)
                 node->pre->next = node->next;
+                else
+                head = node->next;
+
                 if(node->next!=nullptr)
                 node->next->pre = node->pre;
                 delete node;
@@ -73,16 +86,26 @@ public:
             }
             node = node->next;
         }
+        
         return 0;
     }
-
     void print_all_nodes(){
         ListNode* node = head;
         while ((node!=nullptr))
         {
             /* code */
-            std::cout<<"key is : " << node->key << " value is : "<< node->value<<std::endl;
+            std::cout<<"正着 key is : " << node->key << " value is : "<< node->value<<std::endl;
             node = node->next;
-        }        
+        }
+
+  
+        /*
+        while ((node!=nullptr))
+        {
+            
+            std::cout<<"反着 key is : " << node->key << " value is : "<< node->value<<std::endl;
+            node = node->pre;
+        }*/
+  
     }
 };

@@ -9,12 +9,11 @@ int main(){
     lptr->add_node(5,-5);
 
     lptr->print_all_nodes();
-
-    int five = lptr->check_value(1);
-    std::cout<<five<<std::endl;
-
+    std::cout << std::endl;
+    lptr->check_value(1);
+    std::cout << std::endl;
     lptr->print_all_nodes();
-
+    std::cout << std::endl;
     lptr->delete_node(3);
     lptr->print_all_nodes();
 
