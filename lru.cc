@@ -33,8 +33,7 @@ public:
             {
                 std::cout << "the value of " << k << " is " << node->value << std::endl;
 
-                if(node->pre!=nullptr){
-                    std::cout<<" pre pre is" <<node->pre->pre->value<<std::endl;          
+                if(node->pre!=nullptr){          
                     node->pre->next = node->next; 
                     
                     if(node->next!=nullptr)
@@ -44,14 +43,11 @@ public:
 
                     if(node->pre->pre!=nullptr){
                         node->pre->pre->next = node;
-                        node->pre = node->pre->pre;
-                        node->pre->pre;   
-                        std::cout<<" pre pre is" <<node->pre->pre->value<<std::endl;               
+                        node->pre = node->pre->pre;                               
                     }
                     else{
                         head = node;
-                        node->pre =nullptr;
-                        std::cout<<" head is" <<node->pre->pre->value<<std::endl;   
+                        node->pre =nullptr;   
                     }          
                 
                 }
@@ -94,7 +90,7 @@ public:
         while ((node!=nullptr))
         {
             /* code */
-            std::cout<<"正着 key is : " << node->key << " value is : "<< node->value<<std::endl;
+            std::cout<<"key is : " << node->key << " value is : "<< node->value<<std::endl;
             node = node->next;
         }
 
