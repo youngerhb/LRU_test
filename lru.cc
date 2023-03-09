@@ -35,19 +35,21 @@ public:
 
                 if(node->pre!=nullptr){          
                     node->pre->next = node->next; 
-                    
-                    if(node->next!=nullptr)
+                    if(node->next!=nullptr){
                     node->next->pre = node->pre;
-
+                    }
+                    
                     node->next=node->pre;
 
                     if(node->pre->pre!=nullptr){
                         node->pre->pre->next = node;
-                        node->pre = node->pre->pre;                               
+                        node->pre = node->pre->pre; 
+                        node->next->pre = node;                              
                     }
                     else{
                         head = node;
-                        node->pre =nullptr;   
+                        node->pre =nullptr;
+                        node->next->pre = node;     
                     }          
                 
                 }
